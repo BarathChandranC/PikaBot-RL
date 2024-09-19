@@ -24,3 +24,132 @@ Proximal Policy Optimization (PPO) is a **policy gradient** method that improves
 
 ### 3)DDQN
 Double Deep Q-Network (DDQN) is a **value-based** method that refines the original DQN by separating action selection and evaluation to avoid overestimating Q-values. Unlike PPO and REINFORCE, which focus on learning a policy, DDQN learns the value of state-action pairs and uses these values to guide decision-making. This method is particularly effective in environments where learning precise action values is crucial for long-term success.
+## Installation Instructions
+
+1. **Ensure Python 3.8 or later is installed** on your system.
+
+2. **Install the required Python dependencies** using pip:
+
+    ```bash
+    pip install poke-env
+    ```
+
+3. **Install Node.js**: Make sure Node.js v10 or later is installed on your system.
+
+4. **Clone the Pokémon Showdown Repository**:
+
+    ```bash
+    git clone https://github.com/smogon/pokemon-showdown.git
+    ```
+
+5. **Navigate to the Repository Directory**:
+
+    ```bash
+    cd pokemon-showdown
+    ```
+
+6. **Install Dependencies**:
+
+    ```bash
+    npm install
+    ```
+
+7. **Copy the Configuration File**:
+
+    ```bash
+    cp config/config-example.js config/config.js
+    ```
+
+## Running the Code for battle
+
+To battle the bot, follow these steps:
+
+1. **Create Two Pokémon Showdown Accounts**:
+   - You need two accounts: one to host the bot and another for yourself.
+   - Create these accounts at [Pokémon Showdown](https://play.pokemonshowdown.com).
+
+2. **Prepare the Account Information**:
+   - Create a file named `accounts.txt` in the same directory as your `PPO.py` script.
+   - This file should contain the username and password of the account you will use to host the bot.
+
+3. **Run the PPO Script**:
+   - Ensure the `PPO.py` script, model weights file, and `accounts.txt` are all in the same folder.
+   - Execute the script with the following command:
+
+     ```bash
+     python PPO.py
+     ```
+
+4. **Set Up Your Team**:
+   - Go to the Pokémon Showdown team builder and create a team using the following string. Copy and paste this string into the team builder:
+
+     ```
+     Qwilfish (Qwilfish-Hisui) @ Eviolite  
+     Ability: Intimidate  
+     Level: 83  
+     Tera Type: Flying  
+     EVs: 85 HP / 85 Atk / 85 Def / 85 SpA / 85 SpD / 85 Spe  
+     - Toxic Spikes  
+     - Crunch  
+     - Gunk Shot  
+     - Spikes  
+
+     Medicham @ Choice Band  
+     Ability: Pure Power  
+     Level: 86  
+     Tera Type: Fighting  
+     EVs: 85 HP / 85 Atk / 85 Def / 85 SpA / 85 SpD / 85 Spe  
+     - Zen Headbutt  
+     - Ice Punch  
+     - Poison Jab  
+     - Close Combat  
+
+     Orthworm @ Chesto Berry  
+     Ability: Earth Eater  
+     Level: 88  
+     Tera Type: Electric  
+     EVs: 85 HP / 85 Atk / 85 Def / 85 SpA / 85 SpD / 85 Spe  
+     - Body Press  
+     - Coil  
+     - Rest  
+     - Iron Tail  
+
+     Chandelure @ Choice Scarf  
+     Ability: Flash Fire  
+     Level: 83  
+     Tera Type: Fire  
+     EVs: 85 HP / 85 Def / 85 SpA / 85 SpD / 85 Spe  
+     IVs: 0 Atk  
+     - Trick  
+     - Shadow Ball  
+     - Energy Ball  
+     - Fire Blast  
+
+     Floatzel @ Leftovers  
+     Ability: Water Veil  
+     Level: 85  
+     Tera Type: Dark  
+     EVs: 85 HP / 85 Atk / 85 Def / 85 SpA / 85 SpD / 85 Spe  
+     - Crunch  
+     - Low Kick  
+     - Wave Crash  
+     - Bulk Up  
+
+     Spiritomb @ Leftovers  
+     Ability: Infiltrator  
+     Level: 90  
+     Tera Type: Dark  
+     EVs: 85 HP / 85 Atk / 85 Def / 85 SpA / 85 SpD / 85 Spe  
+     - Poltergeist  
+     - Toxic  
+     - Foul Play  
+     - Sucker Punch  
+     ```
+
+5. **Challenge the Bot**:
+   - In Pokémon Showdown, use the search feature to find the username associated with the bot.
+   - Challenge the bot. It should automatically accept the challenge.
+
+6. **Enjoy the Battle**:
+   - Have fun battling the bot!
+
