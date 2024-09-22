@@ -26,7 +26,7 @@ Proximal Policy Optimization (PPO) is a **policy gradient** method that improves
 Double Deep Q-Network (DDQN) is a **value-based** method that refines the original DQN by separating action selection and evaluation to avoid overestimating Q-values. Unlike PPO and REINFORCE, which focus on learning a policy, DDQN learns the value of state-action pairs and uses these values to guide decision-making. This method is particularly effective in environments where learning precise action values is crucial for long-term success.
 ## Installation Instructions
 
-1. **Ensure Python 3.8 or later is installed** on your system.
+1. **Ensure Python 3.8 or later and torch is installed** on your system.
 
 2. **Install the required Python dependencies** using pip:
 
