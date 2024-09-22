@@ -77,7 +77,7 @@ To battle the bot, follow these steps:
    - Execute the script with the following command:
 
      ```bash
-     python PPO.py
+     python PPO2.py
      ```
 
 4. **Set Up Your Team**:
