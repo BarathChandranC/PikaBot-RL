@@ -4,6 +4,7 @@ The idea for this project was to build a bot that can learn to play Pokemon, spe
 
 The easiest platform to develop such a bot is **Pokemon Showdown**, an online platform that is lightweight, free to play, and very accessible for this purpose. Previous work has also been done on similar projects, specifically with the **Poke-env** environment, which provides easy access to all the data needed, eliminating much of the technical implementation required for a classic Pokemon game.
 
+
 ## Motivations for the Project
 
 The goal is to build a bot for the online game **Pokemon Showdown** using reinforcement learning methods such as:
