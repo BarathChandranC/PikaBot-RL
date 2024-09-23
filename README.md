@@ -88,7 +88,9 @@ The action space \( A \) consists of all possible actions we can take. The actio
     ```bash
     pip install -r requirements.txt
     ```
-[![Video Thumbnail](https://forums.pokecharms.com/files/maxresdefault-jpg.555465/)](https://github.com/whitewhistle/PikaBot-RLk/blob/main/part1.mp4)
+
+https://github.com/user-attachments/assets/eae49313-ef67-4b88-8c6a-96ef7949d894
+
 
 ## Running the Code for battle
 
@@ -183,4 +185,8 @@ To battle the bot, follow these steps:
 6. **Enjoy the Battle**:
    - Have fun battling the bot!
 
-[![Video Thumbnail](https://forums.pokecharms.com/files/maxresdefault-jpg.555465/)](https://github.com/whitewhistle/PikaBot-RLk/blob/main/part2.mp4)
+
+
+
+https://github.com/user-attachments/assets/c0530d91-0278-458b-bc1e-f216f4dea14d
+
