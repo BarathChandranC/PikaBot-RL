@@ -8,7 +8,7 @@ The easiest platform to develop such a bot is **Pokemon Showdown**, an online pl
 
 ## Motivations for the Project
 
-The goal is to build a bot for the online game **Pokemon Showdown** using reinforcement learning methods such as:
+The goal was to build a bot for the online game **Pokemon Showdown** using reinforcement learning methods such as:
 
 1. DDQN
 2. PPO
@@ -28,7 +28,7 @@ Proximal Policy Optimization (PPO) is a **policy gradient** method that improves
 Double Deep Q-Network (DDQN) is a **value-based** method that refines the original DQN by separating action selection and evaluation to avoid overestimating Q-values. Unlike PPO and REINFORCE, which focus on learning a policy, DDQN learns the value of state-action pairs and uses these values to guide decision-making. This method is particularly effective in environments where learning precise action values is crucial for long-term success.
 
 ## Network Used
-The Actor-Critic method combines two networks: the **actor**, which selects actions based on the current policy, and the **critic**, which evaluates the value of the state to guide the actor's updates. This architecture reduces the high variance typically seen in pure policy gradient methods like REINFORCE by incorporating value estimates. By leveraging the critic's feedback, the actor improves its policy more efficiently, making the Actor-Critic method well-suited for continuous action spaces and complex environments.The final model used was an Actor-Critic with PPO policy. The architecture consists of an actor-network and a critic network, with the following layers:
+The Actor-Critic method combines two networks: the **actor**, which selects actions based on the current policy, and the **critic**, which evaluates the value of the state to guide the actor's updates. This architecture reduces the high variance typically seen in pure policy gradient methods like REINFORCE by incorporating value estimates. By leveraging the critic's feedback, the actor improves its policy more efficiently, making the Actor-Critic method well-suited for continuous action spaces and complex environments.The final model we used was an Actor-Critic with PPO policy. The architecture consists of an actor-network and a critic network, with the following layers:
 
 #### Actor Network
 
