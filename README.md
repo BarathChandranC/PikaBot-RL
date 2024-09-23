@@ -1,12 +1,18 @@
+<div align="center">
+
+# PikaBot-RL
+</div>
 **Pokemon** is one of the most famous media franchises, spanning across different mediums such as video games, anime, movies, and manga for over 25 years. The Pokemon video games are adventure-based, turn-based strategy games where battles take place between Pokemon trainers. In each turn, players choose between four moves or maneuver their Pokemon while keeping track of the most optimal moves and strategies to win. This formula has remained mostly unchanged since the beginning of the franchise.
 
 The idea for this project was to build a bot that can learn to play Pokemon, specifically to battle other trainers. The bot would learn the different mechanics of the game, from choosing the optimal moves each turn to making long-term strategies to win matches.
 
 The easiest platform to develop such a bot is **Pokemon Showdown**, an online platform that is lightweight, free to play, and very accessible for this purpose. Previous work has also been done on similar projects, specifically with the **Poke-env** environment, which provides easy access to all the data needed, eliminating much of the technical implementation required for a classic Pokemon game.
 
+![Alt text](https://forums.pokecharms.com/files/maxresdefault-jpg.555465/)
+
 ## Motivations for the Project
 
-The goal is to build a bot for the online game **Pokemon Showdown** using reinforcement learning methods such as:
+The goal was to build a bot for the online game **Pokemon Showdown** using reinforcement learning methods such as:
 
 1. DDQN
 2. PPO
@@ -24,41 +30,71 @@ Proximal Policy Optimization (PPO) is a **policy gradient** method that improves
 
 ### 3)DDQN
 Double Deep Q-Network (DDQN) is a **value-based** method that refines the original DQN by separating action selection and evaluation to avoid overestimating Q-values. Unlike PPO and REINFORCE, which focus on learning a policy, DDQN learns the value of state-action pairs and uses these values to guide decision-making. This method is particularly effective in environments where learning precise action values is crucial for long-term success.
+
+## Network Used
+The Actor-Critic method combines two networks: the **actor**, which selects actions based on the current policy, and the **critic**, which evaluates the value of the state to guide the actor's updates. This architecture reduces the high variance typically seen in pure policy gradient methods like REINFORCE by incorporating value estimates. By leveraging the critic's feedback, the actor improves its policy more efficiently, making the Actor-Critic method well-suited for continuous action spaces and complex environments.The final model we used was an Actor-Critic with PPO policy. The architecture consists of an actor-network and a critic network, with the following layers:
+
+#### Actor Network
+
+- **Input Layer:** Takes in the state of the environment (`state_dim` features).
+- **1st Hidden Layer:** Fully connected layer with 64 units and Tanh activation.
+- **2nd Hidden Layer:** Fully connected layer with 128 units and Tanh activation.
+- **3rd Hidden Layer:** Another fully connected layer with 128 units and Tanh activation.
+- **Output Layer:** Fully connected layer with `action_dim` units, using Softmax activation to output probabilities for each action.
+
+#### Critic Network
+
+- **Input Layer:** Same as the actor-network, takes in the state (`state_dim` features).
+- **1st Hidden Layer:** Fully connected layer with 64 units and Tanh activation.
+- **2nd Hidden Layer:** Fully connected layer with 128 units and Tanh activation.
+- **3rd Hidden Layer:** Another fully connected layer with 128 units and Tanh activation.
+- **Output Layer:** A single unit (scalar output), representing the estimated value of the input state (used for value prediction).
+
+
+<p align="center">
+  <img src="https://github.com/whitewhistle/PikaBot-RLk/blob/main/Screenshot%202024-09-23%20190400.png" alt="Alt text" />
+</p>
+
+## State and Action Spaces
+
+### State Space
+
+The state space \( S \) consists of all possible states in the environment. Each state \( s \) is defined at each turn with 12 battle elements concatenated, which correspond to:
+
+1. **[0]** Our Active Pokémon index
+2. **[1]** Opponent Active Pokémon index
+3. **[2-5]** Active Pokémon moves base power (default to -1 if a move doesn't have base power)
+4. **[6-9]** Active Pokémon moves damage multipliers
+5. **[10]** Our remaining Pokémon
+6. **[11]** Opponent remaining Pokémon
+
+### Action Space
+
+The action space \( A \) consists of all possible actions we can take. The action space is a range \([0, 8]\) with a total length of 9. Each action \( a \) in \( A \) corresponds to one of the following choices:
+
+1. **[0]** Use 1st Active Pokémon move
+2. **[1]** Use 2nd Active Pokémon move
+3. **[2]** Use 3rd Active Pokémon move
+4. **[3]** Use 4th Active Pokémon move
+5. **[4]** Switch to 1st next Pokémon
+6. **[5]** Switch to 2nd next Pokémon
+7. **[6]** Switch to 3rd next Pokémon
+8. **[7]** Switch to 4th next Pokémon
+9. **[8]** Switch to 5th next Pokémon
+
+
 ## Installation Instructions
 
-1. **Ensure Python 3.8 or later is installed** on your system.
+1. **Ensure Python 3.8 or later and torch is installed** on your system.
 
 2. **Install the required Python dependencies** using pip:
 
     ```bash
-    pip install poke-env
+    pip install -r requirements.txt
     ```
 
-3. **Install Node.js**: Make sure Node.js v10 or later is installed on your system.
+https://github.com/user-attachments/assets/eae49313-ef67-4b88-8c6a-96ef7949d894
 
-4. **Clone the Pokémon Showdown Repository**:
-
-    ```bash
-    git clone https://github.com/smogon/pokemon-showdown.git
-    ```
-
-5. **Navigate to the Repository Directory**:
-
-    ```bash
-    cd pokemon-showdown
-    ```
-
-6. **Install Dependencies**:
-
-    ```bash
-    npm install
-    ```
-
-7. **Copy the Configuration File**:
-
-    ```bash
-    cp config/config-example.js config/config.js
-    ```
 
 ## Running the Code for battle
 
@@ -69,15 +105,15 @@ To battle the bot, follow these steps:
    - Create these accounts at [Pokémon Showdown](https://play.pokemonshowdown.com).
 
 2. **Prepare the Account Information**:
-   - Create a file named `accounts.txt` in the same directory as your `PPO.py` script.
+   - Create a file named `Account.txt` in the same directory as your `PPO2.py` script.
    - This file should contain the username and password of the account you will use to host the bot.
 
 3. **Run the PPO Script**:
-   - Ensure the `PPO.py` script, model weights file, and `accounts.txt` are all in the same folder.
+   - Ensure the `PPO2.py` script, model weights file, and `accounts.txt` are all in the same folder.
    - Execute the script with the following command:
 
      ```bash
-     python PPO.py
+     python PPO2.py
      ```
 
 4. **Set Up Your Team**:
@@ -152,4 +188,9 @@ To battle the bot, follow these steps:
 
 6. **Enjoy the Battle**:
    - Have fun battling the bot!
+
+
+
+
+https://github.com/user-attachments/assets/c0530d91-0278-458b-bc1e-f216f4dea14d
 
