@@ -27,6 +27,56 @@ Proximal Policy Optimization (PPO) is a **policy gradient** method that improves
 ### 3)DDQN
 Double Deep Q-Network (DDQN) is a **value-based** method that refines the original DQN by separating action selection and evaluation to avoid overestimating Q-values. Unlike PPO and REINFORCE, which focus on learning a policy, DDQN learns the value of state-action pairs and uses these values to guide decision-making. This method is particularly effective in environments where learning precise action values is crucial for long-term success.
 
+## Network Used
+The Actor-Critic method combines two networks: the **actor**, which selects actions based on the current policy, and the **critic**, which evaluates the value of the state to guide the actor's updates. This architecture reduces the high variance typically seen in pure policy gradient methods like REINFORCE by incorporating value estimates. By leveraging the critic's feedback, the actor improves its policy more efficiently, making the Actor-Critic method well-suited for continuous action spaces and complex environments.The final model used was an Actor-Critic with PPO policy. The architecture consists of an actor-network and a critic network, with the following layers:
+
+#### Actor Network
+
+- **Input Layer:** Takes in the state of the environment (`state_dim` features).
+- **1st Hidden Layer:** Fully connected layer with 64 units and Tanh activation.
+- **2nd Hidden Layer:** Fully connected layer with 128 units and Tanh activation.
+- **3rd Hidden Layer:** Another fully connected layer with 128 units and Tanh activation.
+- **Output Layer:** Fully connected layer with `action_dim` units, using Softmax activation to output probabilities for each action.
+
+#### Critic Network
+
+- **Input Layer:** Same as the actor network, takes in the state (`state_dim` features).
+- **1st Hidden Layer:** Fully connected layer with 64 units and Tanh activation.
+- **2nd Hidden Layer:** Fully connected layer with 128 units and Tanh activation.
+- **3rd Hidden Layer:** Another fully connected layer with 128 units and Tanh activation.
+- **Output Layer:** A single unit (scalar output), representing the estimated value of the input state (used for value prediction).
+
+
+<div style="text-align: center;">
+  <img src="https://github.com/whitewhistle/PikaBot-RLk/blob/main/Screenshot%202024-09-23%20190400.png" alt="Alt text" />
+</div>
+
+## State and Action Spaces
+
+### State Space
+
+The state space \( S \) consists of all possible states in the environment. Each state \( s \) is defined at each turn with 12 battle elements concatenated, which correspond to:
+
+1. **[0]** Our Active Pokémon index
+2. **[1]** Opponent Active Pokémon index
+3. **[2-5]** Active Pokémon moves base power (default to -1 if a move doesn't have base power)
+4. **[6-9]** Active Pokémon moves damage multipliers
+5. **[10]** Our remaining Pokémon
+6. **[11]** Opponent remaining Pokémon
+
+### Action Space
+
+The action space \( A \) consists of all possible actions we can take. The action space is a range \([0, 8]\) with a total length of 9. Each action \( a \) in \( A \) corresponds to one of the following choices:
+
+1. **[0]** Use 1st Active Pokémon move
+2. **[1]** Use 2nd Active Pokémon move
+3. **[2]** Use 3rd Active Pokémon move
+4. **[3]** Use 4th Active Pokémon move
+5. **[4]** Switch to 1st next Pokémon
+6. **[5]** Switch to 2nd next Pokémon
+7. **[6]** Switch to 3rd next Pokémon
+8. **[7]** Switch to 4th next Pokémon
+9. **[8]** Switch to 5th next Pokémon
 
 
 ## Installation Instructions
@@ -48,7 +98,7 @@ To battle the bot, follow these steps:
    - Create these accounts at [Pokémon Showdown](https://play.pokemonshowdown.com).
 
 2. **Prepare the Account Information**:
-   - Create a file named `accounts.txt` in the same directory as your `PPO2.py` script.
+   - Create a file named `Account.txt` in the same directory as your `PPO2.py` script.
    - This file should contain the username and password of the account you will use to host the bot.
 
 3. **Run the PPO Script**:
